@@ -97,8 +97,7 @@
   section { padding: 5rem 3rem; max-width: 860px; margin: 0 auto; }
 
   .hero {
-    padding-top: 6rem;
-    padding-bottom: 4rem;
+    padding: 6rem 3rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -442,6 +441,52 @@
     font-size: 11px;
     color: var(--muted);
   }
+
+  @media (max-width: 720px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .nav-links a { font-size: 12px; }
+
+    section { padding: 3.5rem 1.25rem; }
+
+    .hero {
+      padding: 4rem 1.25rem 2.5rem;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .hero-desc { max-width: none; }
+
+    .project-grid { grid-template-columns: 1fr; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    footer {
+      padding: 1.5rem 1.25rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+
+    .hero { padding-top: 3.5rem; gap: 2rem; }
+
+    .stat-row { padding: 0.875rem 1rem; }
+    .stat-num { font-size: 1.6rem; min-width: 5rem; }
+
+    .pub-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1.25rem 0;
+    }
+    .pub-year { padding-top: 0; }
+
+    .contact-link { padding: 0.625rem 1rem; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -458,7 +503,7 @@
 </nav>
 
 <main>
-  <div class="hero" style="padding-left:3rem;padding-right:3rem;">
+  <div class="hero">
     <div class="hero-left">
       <div class="hero-tag">speech · language · machine learning</div>
       <h1>Aditya<br><em>Dalmia</em></h1>
