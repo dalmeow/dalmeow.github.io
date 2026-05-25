@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Dalmia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F0;
+    --bg2: #EDEAE2;
+    --text: #1A1A18;
+    --muted: #6B6860;
+    --accent: #2D5A3D;
+    --accent2: #8B4513;
+    --border: rgba(26,26,24,0.12);
+    --card: #FFFFFF;
+  }
+
+  [data-theme="dark"] {
+    --bg: #141412;
+    --bg2: #1E1D1A;
+    --text: #F0EDE6;
+    --muted: #9A9790;
+    --accent: #5C9E72;
+    --accent2: #C47A3A;
+    --border: rgba(240,237,230,0.1);
+    --card: #1E1D1A;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    transition: all 0.2s;
+  }
+
+  .theme-toggle:hover { color: var(--text); border-color: var(--text); }
+
+  main { padding-top: 80px; }
+
+  section { padding: 5rem 3rem; max-width: 860px; margin: 0 auto; }
+
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-left {}
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 380px;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg2);
+    color: var(--muted);
+  }
+
+  .audio-placeholder {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .play-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .play-btn::after {
+    content: '';
+    border-left: 8px solid white;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 2px;
+  }
+
+  .pub-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .pub-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+
+  .pub-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  .pub-title:hover { color: var(--accent); }
+
+  .pub-venue {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-authors {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .pub-authors strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+
+  .about-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .fact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+  }
+
+  .fact-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .fact-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    font-size: 13px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">dalmeow.com</span>
+  <ul class="nav-links">
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#publications">publications</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="toggle">dark</button>
+</nav>
+
+<main>
+  <div class="hero" style="padding-left:3rem;padding-right:3rem;">
+    <div class="hero-left">
+      <div class="hero-tag">speech · language · machine learning</div>
+      <h1>Aditya<br><em>Dalmia</em></h1>
+      <p class="hero-desc">MSc student at the University of Edinburgh. Building systems that listen, speak, and understand — with a background in production ASR and a growing interest in what language models can do for speech.</p>
+    </div>
+    <div class="hero-right">
+      <div class="stat-row">
+        <span class="stat-num">100k+</span>
+        <span class="stat-label">hours of speech data<br>processed at NeuralSpace</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">&lt;10%</span>
+        <span class="stat-label">WER achieved across Arabic,<br>Hindi, and Filipino</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num">78</span>
+        <span class="stat-label">MSc sem 1 grade — Distinction<br>University of Edinburgh</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <section id="projects">
+    <div class="section-label">projects</div>
+    <div class="project-grid">
+
+      <a class="project-card" href="https://github.com/dalmeow/tts-f1">
+        <div class="project-tag">speech synthesis · 2026</div>
+        <div class="project-title">Neural TTS for F1 Race Commentary</div>
+        <div class="project-desc">FastSpeech2-based voice cloning system trained on 2+ hours of self-recorded studio data and 20+ hours of scraped broadcast commentary. Explored curriculum learning and domain-adaptive pre-training.</div>
+        <div class="audio-placeholder">
+          <div class="play-btn"></div>
+          <span>audio sample coming soon</span>
+        </div>
+        <div class="project-meta" style="margin-top:0.75rem;">
+          <span class="tag">FastSpeech2</span>
+          <span class="tag">HiFi-GAN</span>
+          <span class="tag">MossFormer2</span>
+          <span class="tag">pyannote</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://github.com/dalmeow/puma-histopathology">
+        <div class="project-tag">computer vision · 2026</div>
+        <div class="project-title">Tissue Segmentation on PUMA Melanoma Dataset</div>
+        <div class="project-desc">UNet and NucleiResNet pipelines for tissue segmentation and cell classification. Autoencoder pre-training, SimCLR contrastive learning, systematic ablations. Exceeds baselines by 5–7.5%.</div>
+        <div class="project-meta" style="margin-top:1rem;">
+          <span class="tag">UNet</span>
+          <span class="tag">SimCLR</span>
+          <span class="tag">Lovász loss</span>
+          <span class="tag">Dense CRF</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="#">
+        <div class="project-tag">asr · dissertation · ongoing</div>
+        <div class="project-title">LLM-based ASR Error Correction</div>
+        <div class="project-desc">Investigating post-correction of ASR errors using LLMs with phoneme intermediate representations, applied to financial earnings call transcripts. In partnership with LSEG, supervised by Prof. Peter Bell.</div>
+        <div class="project-meta" style="margin-top:1rem;">
+          <span class="tag">Whisper</span>
+          <span class="tag">LLM fine-tuning</span>
+          <span class="tag">phonemes</span>
+          <span class="tag">LSEG</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="#">
+        <div class="project-tag">nlp · 2026</div>
+        <div class="project-title">Chain-of-Thought Reasoning with Small LLMs</div>
+        <div class="project-desc">LoRA fine-tuning of Qwen2.5-0.5B on GSM8K with curriculum learning, self-consistency, self-refinement, and GRPO to elicit reasoning in a sub-1B parameter model.</div>
+        <div class="project-meta" style="margin-top:1rem;">
+          <span class="tag">LoRA</span>
+          <span class="tag">Qwen2.5</span>
+          <span class="tag">GRPO</span>
+          <span class="tag">GSM8K</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="publications">
+    <div class="section-label">publications</div>
+
+    <div class="pub-item">
+      <span class="pub-year">ICLR 2025</span>
+      <div>
+        <a class="pub-title" href="https://arxiv.org/abs/2411.19799">INCLUDE: Evaluating Multilingual Language Understanding with Regional Knowledge</a>
+        <div class="pub-venue">International Conference on Learning Representations, 2025</div>
+        <div class="pub-authors">Romanou et al. · EPFL × Cohere for AI · <strong>Dalmia</strong> et al.</div>
+      </div>
+    </div>
+
+    <div class="pub-item" style="border-bottom:none;">
+      <span class="pub-year">preprint</span>
+      <div>
+        <a class="pub-title" href="https://github.com/dalmeow/tts-f1">Neural TTS for Formula 1 Race Commentary Using FastSpeech2</a>
+        <div class="pub-venue">Technical report · arXiv preprint upcoming</div>
+        <div class="pub-authors"><strong>Aditya Dalmia</strong></div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="about">
+    <div class="section-label">about</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a speech and language ML engineer, currently finishing an MSc at the University of Edinburgh. Before that, I spent two and a half years at NeuralSpace building production ASR systems — scaling data pipelines, training models for Arabic, Hindi, and Filipino, and shipping features used by real developers.</p>
+        <p>My dissertation looks at using LLMs to fix ASR errors, with a particular focus on named entities in financial speech — supervised jointly by Prof. Peter Bell and the London Stock Exchange Group.</p>
+        <p>Outside of work I like high-altitude Himalayan treks, Formula 1, anime, and hunting for mushrooms around Edinburgh.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-item">
+          <span class="fact-key">currently</span>
+          <span class="fact-val">MSc SLP · University of Edinburgh</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-key">previously</span>
+          <span class="fact-val">Applied Research Scientist · NeuralSpace</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-key">focus areas</span>
+          <span class="fact-val">ASR · TTS · LLMs · Multilingual NLP</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-key">location</span>
+          <span class="fact-val">Edinburgh, UK</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-key">languages</span>
+          <span class="fact-val">Hindi · Odia · Bengali · English</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <div class="section-label">contact</div>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:adi.dalmia08@gmail.com">✉ adi.dalmia08@gmail.com</a>
+      <a class="contact-link" href="https://linkedin.com/in/dalmeow">↗ linkedin</a>
+      <a class="contact-link" href="https://github.com/dalmeow">↗ github</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="footer-text">dalmeow.com</span>
+  <span class="footer-text">edinburgh · 2026</span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('toggle');
+  let dark = false;
+  toggle.addEventListener('click', () => {
+    dark = !dark;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+    toggle.textContent = dark ? 'light' : 'dark';
+  });
+</script>
+</body>
+</html>
