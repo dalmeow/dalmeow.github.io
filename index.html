@@ -159,7 +159,7 @@
 
   .stat-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 10px;
     padding: 1rem 1.25rem;
     border: 1px solid var(--border);
@@ -172,6 +172,8 @@
     font-size: 1.8rem;
     color: var(--text);
     line-height: 1;
+    min-width: 5.5rem;
+    flex-shrink: 0;
   }
 
   .stat-label {
@@ -525,7 +527,7 @@
       </a>
 
       <a class="project-card" href="#">
-        <div class="project-tag">nlp · 2026</div>
+        <div class="project-tag">advanced topics in nlp · 2026</div>
         <div class="project-title">Chain-of-Thought Reasoning with Small LLMs</div>
         <div class="project-desc">LoRA fine-tuning of Qwen2.5-0.5B on GSM8K with curriculum learning, self-consistency, self-refinement, and GRPO to elicit reasoning in a sub-1B parameter model.</div>
         <div class="project-meta" style="margin-top:1rem;">
@@ -549,16 +551,25 @@
       <div>
         <a class="pub-title" href="https://arxiv.org/abs/2411.19799">INCLUDE: Evaluating Multilingual Language Understanding with Regional Knowledge</a>
         <div class="pub-venue">International Conference on Learning Representations, 2025</div>
-        <div class="pub-authors">Romanou et al. · EPFL × Cohere for AI · <strong>Dalmia</strong> et al.</div>
+        <div class="pub-authors">Romanou et al. · EPFL × Cohere for AI</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <span class="pub-year">preprint</span>
+      <div>
+        <a class="pub-title" href="https://github.com/dalmeow/tts-f1">Formula 1 Commentary Speech Synthesis in a Target Speaker’s Voice</a>
+        <div class="pub-venue">Technical report · arXiv preprint upcoming</div>
+        <div class="pub-authors"><strong>Aditya Dalmia</strong></div>
       </div>
     </div>
 
     <div class="pub-item" style="border-bottom:none;">
       <span class="pub-year">preprint</span>
       <div>
-        <a class="pub-title" href="https://github.com/dalmeow/tts-f1">Neural TTS for Formula 1 Race Commentary Using FastSpeech2</a>
+        <a class="pub-title" href="https://github.com/dalmeow/tts-f1">Tissue Segmentation and Cell Classification on a PUMA Melanoma Histopathology Subset</a>
         <div class="pub-venue">Technical report · arXiv preprint upcoming</div>
-        <div class="pub-authors"><strong>Aditya Dalmia</strong></div>
+        <div class="pub-authors"><strong>Dalmia et al.</strong></div>
       </div>
     </div>
 
@@ -572,7 +583,7 @@
       <div class="about-text">
         <p>I'm a speech and language ML engineer, currently finishing an MSc at the University of Edinburgh. Before that, I spent two and a half years at NeuralSpace building production ASR systems — scaling data pipelines, training models for Arabic, Hindi, and Filipino, and shipping features used by real developers.</p>
         <p>My dissertation looks at using LLMs to fix ASR errors, with a particular focus on named entities in financial speech — supervised jointly by Prof. Peter Bell and the London Stock Exchange Group.</p>
-        <p>Outside of work I like high-altitude Himalayan treks, Formula 1, anime, and hunting for mushrooms around Edinburgh.</p>
+        <p>Outside of work I like high-altitude Himalayan treks, Formula 1, anime, board gaming, and hunting for flora and fauna around Edinburgh.</p>
       </div>
       <div class="about-facts">
         <div class="fact-item">
@@ -593,7 +604,7 @@
         </div>
         <div class="fact-item">
           <span class="fact-key">languages</span>
-          <span class="fact-val">Hindi · Odia · Bengali · English</span>
+          <span class="fact-val">English · Hindi · Odia</span>
         </div>
       </div>
     </div>
